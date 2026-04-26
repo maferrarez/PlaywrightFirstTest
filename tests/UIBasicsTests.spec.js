@@ -29,7 +29,7 @@ test('Page Playwright Login-Success',async ({page})=>
 
 })
 
-test.only('Page Playwright Login-Fail',async ({page})=>
+test('Page Playwright Login-Fail',async ({page})=>
 {
     await page.goto("https://practice.expandtesting.com/login");
     console.log(await page.title());
@@ -40,4 +40,5 @@ test.only('Page Playwright Login-Fail',async ({page})=>
     await expect(page.locator('#flash')).toHaveText('Your password is invalid!');
 
 })
+
 
