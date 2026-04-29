@@ -42,7 +42,7 @@ test('Page Playwright Login-Fail',async ({page})=>
 })
 
 // Code that click on a link and a new page (with a new context) is opened
-test.only('@Child windows hadl',async ({browser})=>
+test('@Child windows hadl',async ({browser})=>
 {
     const context = await browser.newContext(); 
     const page = await context.newPage();
