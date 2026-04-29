@@ -41,4 +41,27 @@ test('Page Playwright Login-Fail',async ({page})=>
 
 })
 
+// Code that click on a link and a new page (with a new context) is opened
+test.only('@Child windows hadl',async ({browser})=>
+{
+    const context = await browser.newContext(); 
+    const page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+    console.log(await page.title());
+    await page.locator('#userEmail').fill("teste@gmail.com.br");
+    await page.locator('#userPassword').fill("SuperSecretPassword!1");
+    await page.locator('#login').click();
+    await expect(page.getByText('Automation Practice')).toBeVisible();  
+    const blinkText = page.locator("[href$='https://techsmarthire.com/']");
+    await expect(blinkText).toHaveAttribute("class","blinkingText");
+    const [newPage] = await Promise.all(
+    [
+        context.waitForEvent('page'),
+        blinkText.click(),
+    ])
+    const textNewPage = await newPage.locator(".leading-tight").textContent();
+    console.log(textNewPage);
+    await page.pause();
+
+})
 
